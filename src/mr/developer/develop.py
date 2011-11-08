@@ -719,7 +719,7 @@ class CmdUpdate(Command):
 
 
 class Develop(object):
-    def __call__(self, **kwargs):
+    def __call__(self, *args):
         logger.setLevel(logging.INFO)
         ch = logging.StreamHandler()
         ch.setFormatter(logging.Formatter("%(levelname)s: %(message)s"))
@@ -742,7 +742,7 @@ class Develop(object):
         CmdReset(self)
         CmdStatus(self)
         CmdUpdate(self)
-        args = self.parser.parse_args()
+        args = self.parser.parse_args(args)
 
         try:
             self.buildout_dir = find_base()
